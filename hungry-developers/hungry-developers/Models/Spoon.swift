@@ -37,9 +37,10 @@ class Spoon {
     
     func putDown() {
         self.lock = false
+        print ("Spoon \(id) dropped by Developer: \(self.idHolding ?? -1).")
         self.idHolding = nil
         delegate?.putDown(self.id)
-        print ("Spoon \(id) dropped.")
+        
     }
     
 }

@@ -50,9 +50,12 @@ class Developer {
     
     func eat() {
         print ("Developer \(id) started eating.")
-        let timeToSleep: Int = Int.random(in: 3000...6000)
+        let timeToSleep: Int = Int.random(in: 30000...60000)
         delegate?.startEating(self.id)
-        usleep(UInt32(timeToSleep))
+        let queue = DispatchQueue.init(label: "Developer \(self.id) Eating Queue")
+        queue.sync {
+            usleep(UInt32(timeToSleep))
+        }
         self.rightSpoon.putDown()
         self.leftSpoon.putDown()
         self.hasRightSpoon = false
